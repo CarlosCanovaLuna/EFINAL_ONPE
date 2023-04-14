@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html> 
+<html> 
     <head>
         <title>ONPE - Oficina Nacional de Procesos Electorales</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"  /> 
@@ -15,7 +16,6 @@
 <div class="container">
 
 	<img src="images/f-presidencial.jpg" width="1170" height="248" class="img-responsive mg30top">
-
 	<section class="menu navbar-default menu05">
 		<a name="posicion"></a>
 		<nav class="navbar-collapse bs-navbar-collapse collapse" aria-expanded="false">
@@ -38,9 +38,9 @@
 				<div class="col-xs-12 col-md-3">
 					<div class="menu-interna">
 						<ul>
-							<li><a href="Presidenciales.jsp">RESUMEN GENERAL</a></li>
+							<li><a href="svlPresidencial">RESUMEN GENERAL</a></li>
 							<li><a href="Resultado.jsp" class="act-izq">RESULTADOS PRESIDENCIALES</a></li>
-							<li><a href="Resultados2.jsp" >RESULTADOS POR TIPO DE VOTOS</a></li>
+							<li><a href="Resultado2.jsp" >RESULTADOS POR TIPO DE VOTOS</a></li>
 						</ul>
 					</div>
 				</div>

@@ -3,11 +3,11 @@
     
 <%
 	String id = (String) session.getAttribute("id");
-	String[] data = (String[]) session.getAttribute("data");	
+	String[] data = (String[]) session.getAttribute("Data");	
 	//String[] aDPD = session.getAttribute("dpd").toString().split(",");
 %>
-<!DOCTYPE html>
-<html> 
+
+<!DOCTYPE html> 
     <head>
         <title>ONPE - Oficina Nacional de Procesos Electorales</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"  /> 
@@ -18,9 +18,9 @@
         <link href="css/style.css"       rel="stylesheet" type="text/css" media="screen"/>
 		
     </head>
-    
-   <body>
-   <%@include file="WEB-INF/header.jsp" %>         
+<body>
+	<%@include file="WEB-INF/header.jsp" %> 
+                        
         <div class="container">
             <img src="images/f-presidencial.jpg" width="1170" height="248" class="img-responsive mg30top">
 
@@ -29,7 +29,7 @@
                 <nav class="navbar-collapse bs-navbar-collapse collapse" aria-expanded="false">
                     <ul class="nav navbar-nav">
                         <li class="bt-azul act-azul">
-                            <a href="Presidenciales.jsp">PRESIDENCIAL</a>
+                            <a href="svlPresidencial">PRESIDENCIAL</a>
                         </li>
                         <li class="bt-amarillo">
                             <a href="svlActas">ACTAS</a>
@@ -46,18 +46,18 @@
                     <div class="col-xs-12 col-md-3">
                         <div class="menu-interna">
                             <ul>
-                                <li><a href="svlPresidencial" class="act-izq">RESUMEN GENERAL</a></li>
+                                <li><a href="presidenciales.jsp" class="act-izq">RESUMEN GENERAL</a></li>
                                 <li><a href="Resultado.jsp">RESULTADOS PRESIDENCIALES</a></li>
-                                <li><a href="Resultados2.jsp">RESULTADOS POR TIPO DE VOTOS</a></li>
+                                <li><a href="Resultado2.jsp">RESULTADOS POR TIPO DE VOTOS</a></li>
                             </ul>
                         </div>
                     </div>
-    <div class="col-xs-12 col-md-9" id="impreso"><br>
+    <div class="col-xs-12 col-md-9" id="impreso">
         <div class="contenido-interna">
             <div class="titulos col-xs-12">
                 <div class="col-xs-11">
                     <h3><span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true" style="font-size:19px"></span> SEGUNDA ELECCIÓN PRESIDENCIAL 2016: RESULTADOS PRESIDENCIALES</h3>
-                </div><br>
+                </div>
         <div class="col-xs-1 oculto-boton-print">
             <button><i class="fa fa-print ico-print"></i></button>
                 </div>
@@ -79,7 +79,6 @@
                 </div>
             </div>
         </div>
-        <% if ( id == null) { %>
         <div class="col-xs-12 pbot30">
             <p class="subtitle">RESUMEN GENERAL DE ELECCIONES PRESIDENCIALES</p>
             <br>
@@ -95,14 +94,14 @@
                             <td>
                             <img width="40px" height="40px" src="images/simbolo_pkk.jpg" class="spaceimg">
                             <img width="40px" height="40px" src="images/pkk.jpg" class="spaceimg">PERUANOS POR EL KAMBIO </td>
-                            <td><%=data[6]%></td>
-                            <td> <%=data[7] %></td> 
+                            <td>8,596,937</td>
+                            <td> 50.120</td> 
                                                                                             
                         </tr>
                         <tr>
                             <td><img width="40px" height="40px" src="images/keyko.jpg" class="spaceimg"><img width="40px" height="40px" src="images/simbolo_keyko.jpg" class="spaceimg">FUERZA POPULAR </td>
-                            <td><%="" %></td>
-                            <td> <%="" %></td> 
+                            <td>8,555,880</td>
+                            <td> 49.880</td> 
                         </tr>
                     </tbody>
                 </table>
@@ -163,17 +162,16 @@
                         <td>80.093%</td>
                         <td>19.907%</td>
                     </tr>
-                </table> 
+                </table>
             </div>
          </div>
-          
         <div class="row">
             <div class="col-xs-12 legend ">
                 <span>* La participación ciudadana se basa en actas contabilizadas.
                 </span>
             </div>
         </div>
-<% } %>
+
         </div>
     </div>
 	</div>
@@ -181,6 +179,6 @@
 </div>
 
    <div id="divDetalle"></div>
-    <%@include file="WEB-INF/footer.jsp" %>
+     <%@include file="WEB-INF/footer.jsp" %>
 </body>
-</html>
+</html></html>

@@ -9,6 +9,8 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
+import Dao.OnpeDao;
+
 public class svlPresidencial extends HttpServlet {
 	private static final long serialVersionUID = 1L;
       
@@ -22,18 +24,35 @@ public class svlPresidencial extends HttpServlet {
     	request.setCharacterEncoding("UTF-8");
     	HttpSession session = request.getSession();
     	Dao.OnpeDao daoonpe= new Dao.OnpeDao();
+    	
     	String id =request.getParameter("id");
+    	String nroMesa =request.getParameter("nroMesa");
+    	String idDepartamento =request.getParameter("cboDepartamento");
+    	String idProvincia = request.getParameter("cboProvincia");
+    	String idDistrito = request.getParameter("cboDistrito");
+    	String idLocalVotacion = request.getParameter("cboLocalVotacion");
+		Object data	=null;
     	
-    	Object data =null;
-    	
-        	if(id.equals("")) {
-        		session.setAttribute("presidencial",daoonpe.sp_getResumen_CanovaLuna());
-        		
-        	}
-        	session.setAttribute("id", id);
-        	//session.setAttribute("data", data);
-        	
-        	response.sendRedirect("Presindeciales.jsp");
+		if ( idDepartamento == null ) idDepartamento = "-1";
+		if (id == null) {
+			data =daoonpe.getResumen_CanovaLuna();
+		}
+		
+		if ( id == null && session.getAttribute("departamentos") == null )
+			session.setAttribute("departamentos", daoonpe.getDepartamentos(1,25) );
+		
+		if (id == "Data") {
+			session.setAttribute("Data",daoonpe.getResumen_CanovaLuna());
+		}
+		if (id == "Tipo") {
+			session.setAttribute("Data",daoonpe.getResumen_CanovaLuna());
+		}
+		
+		String sDPD = idDepartamento + "," + idProvincia + "," + idDistrito + "," + idLocalVotacion;
+		session.setAttribute("Data", data);
+		session.setAttribute("id", id);
+		
+		response.sendRedirect("Presidenciales.jsp");
     }
 
 
