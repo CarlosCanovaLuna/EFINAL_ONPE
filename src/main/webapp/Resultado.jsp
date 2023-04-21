@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html> 
-<html> 
+    
+   <%String id =(String) session.getAttribute("id");   
+  String[] data = (String[])session.getAttribute("data");
+  String[] aDPD= session.getAttribute("dpd").toString().split(",");
+  %> 
     <head>
         <title>ONPE - Oficina Nacional de Procesos Electorales</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"  /> 
@@ -11,11 +14,12 @@
         <link href="css/style.css"       rel="stylesheet" type="text/css" media="screen"/>
     </head>
 <body>
-  <%@include file="WEB-INF/header.jsp" %>
-  
+		<%@include file="WEB-INF/header.jsp" %>
+
 <div class="container">
 
 	<img src="images/f-presidencial.jpg" width="1170" height="248" class="img-responsive mg30top">
+
 	<section class="menu navbar-default menu05">
 		<a name="posicion"></a>
 		<nav class="navbar-collapse bs-navbar-collapse collapse" aria-expanded="false">
@@ -39,7 +43,7 @@
 					<div class="menu-interna">
 						<ul>
 							<li><a href="svlPresidencial">RESUMEN GENERAL</a></li>
-							<li><a href="Resultado.jsp" class="act-izq">RESULTADOS PRESIDENCIALES</a></li>
+							<li><a href="svlResultado" class="act-izq">RESULTADOS PRESIDENCIALES</a></li>
 							<li><a href="Resultado2.jsp" >RESULTADOS POR TIPO DE VOTOS</a></li>
 						</ul>
 					</div>
@@ -55,10 +59,10 @@
 								<button><i class="fa fa-print ico-print"></i></button>
 							</div>
 						</div>
-
+		<% if ( id == null) { %>
 						<div class="col-xs-12">
 							<p class="subtitle">RESULTADOS DE ELECCIONES PRESIDENCIALES</p>
-							<form id="frmBuscar" name="frmBuscar" action="" method="post" class="horizontal-form">
+							<form id="frmBuscar" name="frmBuscar" action="" method="post" action="svlResultados1" class="horizontal-form">
 							<div id="divUbicombo" class="row">
 								<div class="col-md-3" style="display:block">
 									<label class="control-label">Ámbito:</label>
@@ -66,112 +70,54 @@
 										<select name="cdgoAmbito" id="cdgoAmbito" class="form-control">
 										  <option value="">TODOS</option>
 										  <option value="P">PERÚ</option>
-										  <option value="E">EXTRANJERO</option>
 										</select>
 									</div>
 								</div>
 								<div id="dvNombreDepartamento" class="col-md-3" style="">
 									<div class="form-group">
 										<label id="lblDepartamento" class="control-label">Departamento:</label>
-										<div id="departamentos"><select name="cdgoDep" id="cdgoDep" class="form-control">
-                                            <option selected="selected" value="">TODOS</option>
-                                                    <option value="010000">AMAZONAS</option>
-                                                    <option value="020000">ANCASH</option>
-                                                    <option value="030000">APURIMAC</option>
-                                                    <option value="040000">AREQUIPA</option>
-                                                    <option value="050000">AYACUCHO</option>
-                                                    <option value="060000">CAJAMARCA</option>
-                                                    <option value="240000">CALLAO</option>
-                                                    <option value="070000">CUSCO</option>
-                                                    <option value="080000">HUANCAVELICA</option>
-                                                    <option value="090000">HUANUCO</option>
-                                                    <option value="100000">ICA</option>
-                                                    <option value="110000">JUNIN</option>
-                                                    <option value="120000">LA LIBERTAD</option>
-                                                    <option value="130000">LAMBAYEQUE</option>
-                                                    <option value="140000">LIMA</option>
-                                                    <option value="150000">LORETO</option>
-                                                    <option value="160000">MADRE DE DIOS</option>
-                                                    <option value="170000">MOQUEGUA</option>
-                                                    <option value="180000">PASCO</option>
-                                                    <option value="190000">PIURA</option>
-                                                    <option value="200000">PUNO</option>
-                                                    <option value="210000">SAN MARTIN</option>
-                                                    <option value="220000">TACNA</option>
-                                                    <option value="230000">TUMBES</option>
-                                                    <option value="250000">UCAYALI</option>
-                                            </select>
+										<div id="departamentos">
+											<select name="cboDepartamento" id="cboDepartamento" class="form-control" onchange="javascript:document.frmBuscar.submit()" >
+	    												<option <%= ( aDPD[0].equals("-1") ? "selected" : "" ) %> value="-1">--SELECCIONE--</option>
+	    												
+	    												<%  if ( session.getAttribute("departamentos") != null ) {
+	    														String[][] mDepartamentos = (String[][]) session.getAttribute("departamentos"); 
+	    														for( String[] aDepartamento : mDepartamentos ) { %>
+											            			<option <%= ( aDPD[0].equals( aDepartamento[0] ) ? "selected" : "" ) %>  value="<%= aDepartamento[0] %>"><%= aDepartamento[1] %></option>
+											            <% } } %>
+													</select>
                                         </div>
 									</div>
 								</div>
-								<div id="dvNombreProvincia" class="col-md-3" style="">
-									<div class="form-group">
-										<label id="lblProvincia" class="control-label">Provincia:</label>
-										<div id="provincias"><select name="cdgoProv" id="cdgoProv" class="form-control">
-                                            <option selected="selected" value="">TODOS</option>
-                                            <option value="140900">BARRANCA</option>
-                                            <option value="140200">CAJATAMBO</option>
-                                            <option value="140300">CANTA</option>
-                                            <option value="140400">CAÑETE</option>
-                                            <option value="140800">HUARAL</option>
-                                            <option value="140600">HUAROCHIRI</option>
-                                            <option value="140500">HUAURA</option>
-                                            <option value="140100">LIMA</option>
-                                            <option value="141000">OYON</option>
-                                            <option value="140700">YAUYOS</option>
-    									</select>
-										<span id="aComentarioProvincia"></span></div>
-									</div>
-								</div>
+									<div id="dvNombreProvincia" class="col-md-3" style="">
+											<div class="form-group">
+												<label id="lblProvincia" class="control-label">Provincia:</label>
+												<div id="provincias">
+													<select id="cboProvincia" name="cboProvincia" class="form-control" onchange="javascript:document.frmBuscar.submit()" <%= aDPD[0].equals("-1") ? "disabled" : "" %> >
+														<option <%= ( aDPD[1].equals("-1") ? "selected" : "" ) %> value="-1">--SELECCIONE--</option>
+	    												
+	    												<% 	if ( session.getAttribute("provincias") != null ) {  
+	    														String[][] mProvincias = (String[][]) session.getAttribute("provincias"); 
+	    														for( String[] aProvincia : mProvincias ) { %>
+											            			<option <%= ( aDPD[1].equals( aProvincia[0] ) ? "selected" : "" ) %> value="<%= aProvincia[0] %>"><%= aProvincia[1] %></option>
+											            <% } } %>
+													</select> 
+												</div>
+											</div>
+										</div>
 								<div id="dvNombreDistrito" class="col-md-3" style="">
 									<div class="form-group">
 										<label id="lblDistrito" class="control-label">Distrito:</label>
-										<div id="distritos"><select name="cdgoDist" id="cdgoDist" class="form-control">
-                                        		<option selected="selected" value=""> TODOS </option>
-                                                <option value="140102">ANCON</option>
-                                                <option value="140103">ATE</option>
-                                                <option value="140125">BARRANCO</option>
-                                                <option value="140104">BREÑA</option>
-                                                <option value="140105">CARABAYLLO</option>
-                                                <option value="140107">CHACLACAYO</option>
-                                                <option value="140108">CHORRILLOS</option>
-                                                <option value="140139">CIENEGUILLA</option>
-                                                <option value="140106">COMAS</option>
-                                                <option value="140135">EL AGUSTINO</option>
-                                                <option value="140134">INDEPENDENCIA</option>
-                                                <option value="140133">JESUS MARIA</option>
-                                                <option value="140110">LA MOLINA</option>
-                                                <option value="140109">LA VICTORIA</option>
-                                                <option value="140101">LIMA</option>
-                                                <option value="140111">LINCE</option>
-                                                <option value="140142">LOS OLIVOS</option>
-                                                <option value="140112">LURIGANCHO</option>
-                                                <option value="140113">LURIN</option>
-                                                <option value="140114">MAGDALENA DEL MAR</option>
-                                                <option value="140115">MIRAFLORES</option>
-                                                <option value="140116">PACHACAMAC</option>
-                                                <option value="140118">PUCUSANA</option>
-                                                <option value="140117">PUEBLO LIBRE</option>
-                                                <option value="140119">PUENTE PIEDRA</option>
-                                                <option value="140120">PUNTA HERMOSA</option>
-                                                <option value="140121">PUNTA NEGRA</option>
-                                                <option value="140122">RIMAC</option>
-                                                <option value="140123">SAN BARTOLO</option>
-                                                <option value="140140">SAN BORJA</option>
-                                                <option value="140124">SAN ISIDRO</option>
-                                                <option value="140137">SAN JUAN DE LURIGANCHO</option>
-                                                <option value="140136">SAN JUAN DE MIRAFLORES</option>
-                                                <option value="140138">SAN LUIS</option>
-                                                <option value="140126">SAN MARTIN DE PORRES</option>
-                                                <option value="140127">SAN MIGUEL</option>
-                                                <option value="140143">SANTA ANITA</option>
-                                                <option value="140128">SANTA MARIA DEL MAR</option>
-                                                <option value="140129">SANTA ROSA</option>
-                                                <option value="140130">SANTIAGO DE SURCO</option>
-                                                <option value="140131">SURQUILLO</option>
-                                                <option value="140141">VILLA EL SALVADOR</option>
-                                                <option value="140132">VILLA MARIA DEL TRIUNFO</option>
-                                        </select>
+										<div id="distritos">
+											<select id="cboDistrito" name="cboDistrito" class="form-control" onchange="javascript:document.frmBuscar.submit()" <%= aDPD[1].equals("-1") ? "disabled" : "" %> >
+													<option <%= ( aDPD[2].equals("-1") ? "selected" : "" ) %> value="-1">--SELECCIONE--</option>
+	    												
+    												<% 	if ( session.getAttribute("distritos") != null ) {  
+    														String[][] mDistritos = (String[][]) session.getAttribute("distritos"); 
+    														for( String[] aDistrito : mDistritos ) { %>
+										            			<option <%= ( aDPD[2].equals( aDistrito[0] ) ? "selected" : "" ) %> value="<%= aDistrito[0] %>"><%= aDistrito[1] %></option>
+										            <% } } %>
+												</select>
                                     </div>
                                 </div>
                             </div>
@@ -450,6 +396,9 @@
 
     </form>
 </div>
+	<% } %>
+
+
 </div>
 
 </div>
@@ -457,6 +406,6 @@
 	</section>
 </div>
  <%@include file="WEB-INF/footer.jsp" %>
+
 </body>
-</html>
-    
+</html>    

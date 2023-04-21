@@ -39,4 +39,14 @@
     <servlet-name>svlPresidencial</servlet-name>
     <url-pattern>/svlPresidencial</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>svlResultado</display-name>
+    <servlet-name>svlResultado</servlet-name>
+    <servlet-class>Svl.svlResultado</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>svlResultado</servlet-name>
+    <url-pattern>/svlResultado</url-pattern>
+  </servlet-mapping>
 </web-app>

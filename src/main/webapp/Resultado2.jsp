@@ -39,7 +39,7 @@
 					<div class="menu-interna">
 						<ul>
 							<li><a href="svlPresidencial">RESUMEN GENERAL</a></li>
-							<li><a href="Resultado.jsp">RESULTADOS PRESIDENCIALES</a></li>
+							<li><a href="svlResultado">RESULTADOS PRESIDENCIALES</a></li>
 							<li><a href="Resultado2.jsp" class="act-izq">RESULTADOS POR TIPO DE VOTOS</a></li>
 						</ul>
 					</div>

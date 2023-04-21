@@ -51,9 +51,9 @@ public class OnpeDao {
 		return db.getColumna();
 		
 	}
-	public Object getResumen_CanovaLuna(){
+	public Object getResumenGeneralCanova(){
 		db.Sentencia("sp_getResumen_CanovaLuna ");
-		return db.getColumna();
+		return db.getRegistro();
 	}
 
 }

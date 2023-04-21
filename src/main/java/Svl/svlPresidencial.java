@@ -23,34 +23,13 @@ public class svlPresidencial extends HttpServlet {
     	response.setContentType("text/html;charset=UTF-8");
     	request.setCharacterEncoding("UTF-8");
     	HttpSession session = request.getSession();
+    	Object data = null;
+    	
     	Dao.OnpeDao daoonpe= new Dao.OnpeDao();
     	
-    	String id =request.getParameter("id");
-    	String nroMesa =request.getParameter("nroMesa");
-    	String idDepartamento =request.getParameter("cboDepartamento");
-    	String idProvincia = request.getParameter("cboProvincia");
-    	String idDistrito = request.getParameter("cboDistrito");
-    	String idLocalVotacion = request.getParameter("cboLocalVotacion");
-		Object data	=null;
     	
-		if ( idDepartamento == null ) idDepartamento = "-1";
-		if (id == null) {
-			data =daoonpe.getResumen_CanovaLuna();
-		}
-		
-		if ( id == null && session.getAttribute("departamentos") == null )
-			session.setAttribute("departamentos", daoonpe.getDepartamentos(1,25) );
-		
-		if (id == "Data") {
-			session.setAttribute("Data",daoonpe.getResumen_CanovaLuna());
-		}
-		if (id == "Tipo") {
-			session.setAttribute("Data",daoonpe.getResumen_CanovaLuna());
-		}
-		
-		String sDPD = idDepartamento + "," + idProvincia + "," + idDistrito + "," + idLocalVotacion;
-		session.setAttribute("Data", data);
-		session.setAttribute("id", id);
+    	data = daoonpe.getResumenGeneralCanova();
+		session.setAttribute("data", data);
 		
 		response.sendRedirect("Presidenciales.jsp");
     }
@@ -61,7 +40,6 @@ public class svlPresidencial extends HttpServlet {
 		processRequest(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		processRequest(request, response);
 	}
 

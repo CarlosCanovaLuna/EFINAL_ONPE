@@ -24,7 +24,7 @@
 				<nav class="navbar-collapse bs-navbar-collapse collapse" aria-expanded="false">
 					<ul class="nav navbar-nav">
 						<li class="bt-azul">
-							<a href="Presidenciales.jsp">PRESIDENCIAL</a>
+							<a href="svlPresidencial">PRESIDENCIAL</a>
 						</li>
 						<li class="bt-amarillo act-amarillo">
 							<a href="svlActas">ACTAS</a>
@@ -336,7 +336,7 @@
 																				<tr>
 																					<td>PERUANOS POR EL KAMBIO</td>
 																					<td><img width="40px" height="40px"
-																						src="imagenes/simbolo_ppk.jpg"></td>
+																						src="images/simbolo_ppk.jpg"></td>
 																					<td><%= data[11] %></td>
 																				</tr>
 																				<tr>
